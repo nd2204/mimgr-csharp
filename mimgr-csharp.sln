@@ -1,0 +1,62 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.12.35527.113 d17.12
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "app", "app\app.csproj", "{F76710A1-90D6-47E3-AEF0-FD928A7A3D10}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "uploads", "uploads", "{803B6210-5068-43E9-83B7-9719D63E877A}"
+	ProjectSection(SolutionItems) = preProject
+		uploads\akai-professional-mpk-mini-play-mk3_1_SYN0008141-000_1.jpg = uploads\akai-professional-mpk-mini-play-mk3_1_SYN0008141-000_1.jpg
+		uploads\behringer-system-35_1_SYN0008001-000_1.jpg = uploads\behringer-system-35_1_SYN0008001-000_1.jpg
+		uploads\casio-ct-s1-wh-und-bag-set_1_KEY121_1.jpg = uploads\casio-ct-s1-wh-und-bag-set_1_KEY121_1.jpg
+		uploads\cre8audio-nifty-bundle_1_SYN0007268-000_1.jpg = uploads\cre8audio-nifty-bundle_1_SYN0007268-000_1.jpg
+		uploads\crumar-mojo-61b-lower-manual_1_KEY0004634-000_1.jpg = uploads\crumar-mojo-61b-lower-manual_1_KEY0004634-000_1.jpg
+		uploads\erica-synths-pico-system-ii_1_SYN0007559-000_1.jpg = uploads\erica-synths-pico-system-ii_1_SYN0007559-000_1.jpg
+		uploads\fame-dp-2000-wh-und-k92-set_1_EPI618_1.jpg = uploads\fame-dp-2000-wh-und-k92-set_1_EPI618_1.jpg
+		uploads\fame-dp-88-bag-set_1_KEY012_1.jpg = uploads\fame-dp-88-bag-set_1_KEY012_1.jpg
+		uploads\ferrofish-b4000-organ-expander_1_KEY0003269-000_1.jpg = uploads\ferrofish-b4000-organ-expander_1_KEY0003269-000_1.jpg
+		uploads\ibanez-artcore-as53-srf-sunburst-red-flat_1_GIT0057757-000_1.jpg = uploads\ibanez-artcore-as53-srf-sunburst-red-flat_1_GIT0057757-000_1.jpg
+		uploads\j-und-d-sh-40-nt-natural-incl-case_1_GIT0016578-000_1.jpg = uploads\j-und-d-sh-40-nt-natural-incl-case_1_GIT0016578-000_1.jpg
+		uploads\j-und-d-st-mini-sunburst-set_1_AAB540_1.jpg = uploads\j-und-d-st-mini-sunburst-set_1_AAB540_1.jpg
+		uploads\kawai-gl-10-e-p-grand_1_PIA0002124-000_1.jpg = uploads\kawai-gl-10-e-p-grand_1_PIA0002124-000_1.jpg
+		uploads\kawai-k-15e-piano-black-polished-112-cm_1_PIA0000475-000_1.jpg = uploads\kawai-k-15e-piano-black-polished-112-cm_1_PIA0000475-000_1.jpg
+		uploads\kawai-vpc-1-klapptisch-set_1_SYN904_1_1.jpg = uploads\kawai-vpc-1-klapptisch-set_1_SYN904_1_1.jpg
+		uploads\keymaxx-sdp-155-complete-set_1_EPI701_1_1.jpg = uploads\keymaxx-sdp-155-complete-set_1_EPI701_1_1.jpg
+		uploads\keymaxx-sp-1-complete-set_1_KEY615_1.jpg = uploads\keymaxx-sp-1-complete-set_1_KEY615_1.jpg
+		uploads\korg-fisa-suprema-tastenversion_1_KEY0006033-000_1.jpg = uploads\korg-fisa-suprema-tastenversion_1_KEY0006033-000_1.jpg
+		uploads\korg-pa5x-61-internat-und-case-set_1_KEY400_1_1.jpg = uploads\korg-pa5x-61-internat-und-case-set_1_KEY400_1_1.jpg
+		uploads\korg-volca-drum_1_SYN0006845-000_1.jpg = uploads\korg-volca-drum_1_SYN0006845-000_1.jpg
+		uploads\miditech-midistart-music-25-kcs-bag-set_1_SYN851_1.jpg = uploads\miditech-midistart-music-25-kcs-bag-set_1_SYN851_1.jpg
+		uploads\music-store-e-gitarren-zubehoer-paket_1_GIT002_1.jpg = uploads\music-store-e-gitarren-zubehoer-paket_1_GIT002_1.jpg
+		uploads\rockson-tl-e-guitar-black-ms-2-wh_1_GIT423_1.jpg = uploads\rockson-tl-e-guitar-black-ms-2-wh_1_GIT423_1.jpg
+		uploads\roland-fr-1x-piano-type-v-accordion-black-_1_KEY0003353-000_1.jpg = uploads\roland-fr-1x-piano-type-v-accordion-black-_1_KEY0003353-000_1.jpg
+		uploads\roland-fr-4x-bk_1_KEY0004535-000_1_1.jpg = uploads\roland-fr-4x-bk_1_KEY0004535-000_1_1.jpg
+		uploads\roland-vr-730-v-combo-stage-set_1_KEY350_1.jpg = uploads\roland-vr-730-v-combo-stage-set_1_KEY350_1.jpg
+		uploads\schimmel-c-213-tradition-grand-213-cm-black-polished_1_PIA0000705-001_1_1.jpg = uploads\schimmel-c-213-tradition-grand-213-cm-black-polished_1_PIA0000705-001_1_1.jpg
+		uploads\schimmel-f-116-fridolin_1_PIA0002476-000_1.jpg = uploads\schimmel-f-116-fridolin_1_PIA0002476-000_1.jpg
+		uploads\sonicware-liven-ambient_1_SYN0009044-000_1.jpg = uploads\sonicware-liven-ambient_1_SYN0009044-000_1.jpg
+		uploads\squier-affinity-series-starcaster-mn-3-color-sunburst_1_GIT0050680-000_1.jpg = uploads\squier-affinity-series-starcaster-mn-3-color-sunburst_1_GIT0050680-000_1.jpg
+		uploads\studiologic-sl-88-studio-basic-set_1_SYN192_1.jpg = uploads\studiologic-sl-88-studio-basic-set_1_SYN192_1.jpg
+		uploads\yamaha-b1-pe-piano-109-cm-black-polished_1_PIA0000776-000_1.jpg = uploads\yamaha-b1-pe-piano-109-cm-black-polished_1_PIA0000776-000_1.jpg
+		uploads\yamaha-ck61-stage-set_1_KEY251_1.jpg = uploads\yamaha-ck61-stage-set_1_KEY251_1.jpg
+		uploads\yamaha-gb1-pwh-grand-150cm-white-polished_1_PIA0002058-000_1.jpg = uploads\yamaha-gb1-pwh-grand-150cm-white-polished_1_PIA0002058-000_1.jpg
+		uploads\yamaha-reface-yc_1_SYN0004828-000_1.jpg = uploads\yamaha-reface-yc_1_SYN0004828-000_1.jpg
+		uploads\yamaha-ydp-145-wh-und-k92-set_1_EPI252_1.jpg = uploads\yamaha-ydp-145-wh-und-k92-set_1_EPI252_1.jpg
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F76710A1-90D6-47E3-AEF0-FD928A7A3D10}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F76710A1-90D6-47E3-AEF0-FD928A7A3D10}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F76710A1-90D6-47E3-AEF0-FD928A7A3D10}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F76710A1-90D6-47E3-AEF0-FD928A7A3D10}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
