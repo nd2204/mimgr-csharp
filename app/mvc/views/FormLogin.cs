@@ -7,14 +7,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using app.db;
 
-namespace app
-{
-    public partial class Form1 : Form
-    {
-        public Form1()
-        {
+namespace app.mvc.views {
+    public partial class FormLogin : Form {
+        public FormLogin() {
+            Console.WriteLine("Hello");
             InitializeComponent();
         }
     }

@@ -19,7 +19,7 @@ namespace app.db {
             try {
                 using (var preparedStatement = new MySqlCommand(stmt, dbcon)) {
                     for (int i = 0; i < args.Length; ++i) {
-                        preparedStatement.Parameters.AddWithValue($"@param{i}", args[i]);
+                        preparedStatement.Parameters.AddWithValue($"@value{i}", args[i]);
                     }
                     resultSet = preparedStatement.ExecuteReader();
                 }
@@ -41,7 +41,7 @@ namespace app.db {
                     foreach (var args in batchArgs) {
                         preparedStatement.Parameters.Clear(); // Clear previous parameters
                         for (int i = 0; i < args.Length; ++i) {
-                            preparedStatement.Parameters.AddWithValue($"@param{i}", args[i]);
+                            preparedStatement.Parameters.AddWithValue($"@value{i}", args[i]);
                         }
                         preparedStatement.ExecuteNonQuery();
                         totalAffectedRows += args.Length;
@@ -64,7 +64,7 @@ namespace app.db {
             try {
                 using (var preparedStatement = new MySqlCommand(stmt, dbcon)) {
                     for (int i = 0; i < args.Length; ++i) {
-                        preparedStatement.Parameters.AddWithValue($"@param{i}", args[i]);
+                        preparedStatement.Parameters.AddWithValue($"@value{i}", args[i]);
                     }
                     totalAffectedRows = preparedStatement.ExecuteNonQuery();
                 }
@@ -77,12 +77,12 @@ namespace app.db {
         }
 
 
-        public static MySqlDataReader selectAllFromTableByField(string table, string field, string value) {
-            return Select(string.Format("SELECT * FROM {0} WHERE {1} = @value", table, field), value);
+        public static MySqlDataReader SelectAllFromTableByField(string table, string field, string value) {
+            return Select(string.Format("SELECT * FROM {0} WHERE {1} = @value0", table, field), value);
         }
 
-        public static MySqlDataReader selectAllFromTableLikeField(string table, string field, string value) {
-            return Select(string.Format("SELECT * FROM {0} WHERE {1} LIKE @value", table, field), value);
+        public static MySqlDataReader SelectAllFromTableLikeField(string table, string field, string value) {
+            return Select(string.Format("SELECT * FROM {0} WHERE {1} LIKE @value0", table, field), value);
         }
 
     }
