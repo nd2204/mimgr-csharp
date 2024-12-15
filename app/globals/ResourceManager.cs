@@ -17,7 +17,7 @@ namespace app.globals {
         public static ResourceManager Instance => instance.Value;
 
         private List<FileInfo> tempFiles = new List<FileInfo>();
-        private static DirectoryInfo ResourcePath = new DirectoryInfo(Path.Combine(AppContext.BaseDirectory, "..", "..", "resources"));
+        private static DirectoryInfo ResourcePath = new DirectoryInfo(Path.Combine(AppContext.BaseDirectory, "..", "..", "..", "resources"));
         public DirectoryInfo AppDataPath { get; }
         public DirectoryInfo TempPath { get; }
         public DirectoryInfo UploadPath { get; }
@@ -34,7 +34,7 @@ namespace app.globals {
             }
             AppDataPath = new DirectoryInfo(Path.Combine(appData, APP_NAME));
 
-            ProjectPath = new DirectoryInfo(Path.Combine(AppContext.BaseDirectory, "..", ".."));
+            ProjectPath = new DirectoryInfo(Path.Combine(AppContext.BaseDirectory, "..", "..", ".."));
             UploadPath = new DirectoryInfo(Path.Combine(ProjectPath.FullName, "uploads"));
             ExportPath = new DirectoryInfo(Path.Combine(ProjectPath.FullName, "exports"));
             TempPath = new DirectoryInfo(Path.Combine(Path.GetTempPath(), APP_NAME));
@@ -167,7 +167,7 @@ namespace app.globals {
         }
 
         public string GetRelativePathFromProjectToPath(FileInfo path) {
-            return Path.GetRelativePath(ProjectPath, path.Name);
+            return Path.GetRelativePath(ProjectPath.FullName, path.Name);
         }
 
         public static FileInfo GetUniquePath(FileInfo destinationPath) {

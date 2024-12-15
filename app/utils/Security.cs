@@ -23,23 +23,19 @@ namespace app.utils {
 
         // Function to generate a random salt of specified length
         public static string GenerateSalt(int length) {
-            using (var rng = new RNGCryptoServiceProvider()) {
-                byte[] salt = new byte[length];
-                rng.GetBytes(salt);
-                return Convert.ToBase64String(salt);
-            }
+            byte[] salt = new byte[length];
+            RandomNumberGenerator.Fill(salt);
+            return Convert.ToBase64String(salt);
         }
 
         // Function to generate a random token
         public static string GenerateToken() {
-            using (var rng = new RNGCryptoServiceProvider()) {
-                byte[] randomBytes = new byte[24];
-                rng.GetBytes(randomBytes);
-                return Convert.ToBase64String(randomBytes)
-                             .TrimEnd('=') // Remove padding characters
-                             .Replace('+', '-')
-                             .Replace('/', '_'); // Base64 URL encoding
-            }
+            byte[] randomBytes = new byte[24];
+            RandomNumberGenerator.Fill(randomBytes);
+            return Convert.ToBase64String(randomBytes)
+                          .TrimEnd('=') // Remove padding characters
+                          .Replace('+', '-')
+                          .Replace('/', '_'); // Base64 URL encoding
         }
 
         // Function to generate a unique session ID (UUID)

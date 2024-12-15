@@ -103,19 +103,5 @@ namespace app.globals {
         public void Dispose() {
             customFontCollection.Dispose();
         }
-
-        private Font LoadCustomFont(string fontPath, int size) {
-            try {
-                var fontCollection = new PrivateFontCollection();
-                fontCollection.AddFontFile(fontPath);
-
-                // Use the first font in the collection
-                return new Font(fontCollection.Families[0], size);
-            }
-            catch (Exception ex) {
-                Console.Error.WriteLine("Error loading font: " + ex.Message);
-            }
-            return null;
-        }
     }
 }
