@@ -166,9 +166,9 @@ namespace app.globals {
             return destinationPath;
         }
 
-        //public string GetRelativePathFromProjectToPath(FileInfo path) {
-        //    return Path.GetRelativePath(ProjectPath, path.Name);
-        //}
+        public string GetRelativePathFromProjectToPath(FileInfo path) {
+            return Path.GetRelativePath(ProjectPath, path.Name);
+        }
 
         public static FileInfo GetUniquePath(FileInfo destinationPath) {
             int copyNumber = 1;
