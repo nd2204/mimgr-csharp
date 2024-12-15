@@ -28,7 +28,7 @@ namespace app
 
             UserRecord ur = SessionManager.LoadSession();
             if (ur == null) {
-                formMgr.LoadForm(formMgr.Login);
+                formMgr.LoadForm(formMgr.SignUp);
             }
             else {
                 formMgr.LoadForm(formMgr.Dashboard);

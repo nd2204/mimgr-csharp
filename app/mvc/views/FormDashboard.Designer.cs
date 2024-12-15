@@ -28,10 +28,11 @@ partial class FormDashboard {
         // 
         // FormDashboard
         // 
-        this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
+        this.AutoScaleDimensions = new System.Drawing.SizeF(13F, 32F);
         this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-        this.ClientSize = new System.Drawing.Size(925, 615);
+        this.ClientSize = new System.Drawing.Size(1690, 1230);
         this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+        this.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
         this.Name = "FormDashboard";
         this.Text = "FormDashboard";
         this.ResumeLayout(false);

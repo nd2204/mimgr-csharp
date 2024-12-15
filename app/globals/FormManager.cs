@@ -27,7 +27,7 @@ internal class FormManager {
 
     public Panel MainPanel { get { return mainPanel; } }
     public Form MainForm { get { return (_MainForm != null) ? _MainForm : new FormMain(); } }
-    public Form SignUp { get { return (_SignUp != null) ? _SignUp : new Form(); } }
+    public Form SignUp { get { return (_SignUp != null) ? _SignUp : new FormSignUp(); } }
     public FormLogin Login { get { return (_Login != null) ? _Login : new FormLogin(); } }
     public FormDashboard Dashboard { get { return (_Dashboard != null) ? _Dashboard : new FormDashboard(); } }
 

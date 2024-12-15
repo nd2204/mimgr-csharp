@@ -1,17 +1,10 @@
 ﻿using app.globals;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace app.mvc.views {
-    public partial class FormLogin : Form {
-        public FormLogin() {
+    public partial class FormSignUp : Form {
+        public FormSignUp() {
             InitializeComponent();
         }
 
@@ -51,9 +44,13 @@ namespace app.mvc.views {
 
         }
 
-        private void btnSignup_Click(object sender, EventArgs e) {
+        private void tableLayoutPanel1_Paint_3(object sender, PaintEventArgs e) {
+
+        }
+
+        private void login_Click(object sender, EventArgs e) {
             FormManager fm = FormManager.Instance;
-            fm.LoadForm(fm.SignUp);
+            fm.LoadForm(fm.Login);
         }
     }
 }
