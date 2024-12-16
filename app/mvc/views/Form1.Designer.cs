@@ -1,6 +1,6 @@
-﻿namespace app;
+﻿namespace app.mvc.views;
 
-partial class AddProduct {
+partial class Form1 {
     /// <summary>
     /// Required designer variable.
     /// </summary>
@@ -27,7 +27,7 @@ partial class AddProduct {
         this.components = new System.ComponentModel.Container();
         this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
         this.ClientSize = new System.Drawing.Size(800, 450);
-        this.Text = "AddProduct";
+        this.Text = "Form1";
     }
 
     #endregion

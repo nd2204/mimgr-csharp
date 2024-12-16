@@ -8,7 +8,6 @@
   </PropertyGroup>
   <ItemGroup>
     <Folder Include="mvc\controllers\" />
-    <Folder Include="mvc\models\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="resources\icons\account.png" />

@@ -12,10 +12,20 @@ namespace app.db {
 
         public static void LoadValue<T>(MySqlDataReader r, string col_name, out T val) {
             int col = r.GetOrdinal(col_name);
-            if (r.IsDBNull(col))
+            if (r.IsDBNull(col)) {
                 val = default(T);
+            }
             else {
                 val = (T)r.GetValue(col);
+            }
+        }
+        public static T LoadValue<T>(MySqlDataReader r, string col_name) {
+            int col = r.GetOrdinal(col_name);
+            if (r.IsDBNull(col)) {
+                return default(T);
+            }
+            else {
+                return (T)r.GetValue(col);
             }
         }
 

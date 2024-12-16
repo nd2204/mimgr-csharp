@@ -8,9 +8,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace app;
-public partial class AddProduct : Form {
-    public AddProduct() {
+namespace app.mvc.views;
+public partial class FormAddProduct : Form {
+    public FormAddProduct() {
         InitializeComponent();
     }
 }

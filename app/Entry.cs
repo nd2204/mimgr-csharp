@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using app.db.records;
 using app.globals;
+using app.mvc.models;
 using app.mvc.views;
 using app.utils;
 

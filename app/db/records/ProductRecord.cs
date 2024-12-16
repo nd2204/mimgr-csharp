@@ -109,11 +109,11 @@ namespace app.db.records {
         //    ");
         //}
 
-        public static int delete(ProductRecord pr) {
+        public static int Delete(ProductRecord pr) {
             return DBQueries.Update(QUERY_DELETE_BY_KEY, pr.m_id);
         }
 
-        public static int delete(int id) {
+        public static int Delete(int id) {
             return DBQueries.Update(QUERY_DELETE_BY_KEY, id);
         }
 

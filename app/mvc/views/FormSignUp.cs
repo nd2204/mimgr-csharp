@@ -73,6 +73,7 @@ namespace app.mvc.views {
         private void btnSignup_Click(object sender, EventArgs e) {
             string username = tbUsername.TextBox.Text.Trim();
             string password = tbPassword.TextBox.Text.Trim();
+            string confirm = tbConfirmPassword.TextBox.Text.Trim();
             string salt = Security.GenerateSalt(16);
 
             if (string.IsNullOrEmpty(username)) {
@@ -93,12 +94,18 @@ namespace app.mvc.views {
                 tbPassword.Focus();
                 return;
             }
-            if (!tbPassword.Equals(tbConfirmPassword)) {
+            if (!string.Equals(password, confirm)) {
                 MessageBox.Show("Mật khẩu không trùng khớp");
                 return;
             }
 
-            UserRecord.Insert(tbUsername.Text, Security.HashString(password + salt), salt, UserRecord.roles[UserRecord.ROLE_ADMIN]);
+            UserRecord.Insert(username, Security.HashString(password + salt), salt, UserRecord.roles[UserRecord.ROLE_ADMIN]);
+            FormManager.Instance.LoadForm(FormManager.Instance.Dashboard);
+            this.Dispose();
+        }
+
+        private void tableLayoutPanel1_Paint_4(object sender, PaintEventArgs e) {
+
         }
     }
 }

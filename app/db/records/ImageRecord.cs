@@ -12,7 +12,7 @@ namespace app.db.records {
         public string m_name;
         public string m_caption;
         public string m_url;
-        public string m_created_at;
+        public DateTime m_created_at;
         public int    m_author;
 
         public static readonly string TABLE            = "images";
@@ -40,17 +40,17 @@ namespace app.db.records {
             $"SELECT * FROM {TABLE} ORDER BY {FIELD_CREATED_AT} ASC";
 
         public ImageRecord(MySqlDataReader reader) {
-            m_id         = reader.GetInt32(FIELD_ID);
-            m_name       = reader.GetString(FIELD_NAME);
-            m_caption    = reader.GetString(FIELD_CAPTION);
-            m_url        = reader.GetString(FIELD_URL);
-            m_created_at = reader.GetString(FIELD_CREATED_AT);
-            m_author     = reader.GetInt32(FIELD_AUTHOR);
+            m_id         = DBQueries.LoadValue<int>(reader, FIELD_ID);
+            m_name       = DBQueries.LoadValue<string>(reader, FIELD_NAME);
+            m_caption    = DBQueries.LoadValue<string>(reader, FIELD_CAPTION);
+            m_url        = DBQueries.LoadValue<string>(reader, FIELD_URL);
+            m_created_at = DBQueries.LoadValue<DateTime>(reader, FIELD_CREATED_AT);
+            m_author     = DBQueries.LoadValue<int>(reader, FIELD_AUTHOR);
         }
 
         public ImageRecord(
           int id, string name, string caption, string url,
-          string created_at, int author
+          DateTime created_at, int author
         ) {
             m_id             = id;
             m_name           = name;
@@ -94,9 +94,10 @@ namespace app.db.records {
 
         public static ImageRecord SelectById(int id) {
             try {
-                MySqlDataReader reader = DBQueries.Select(QUERY_SELECT_BY_ID, id);
-                if (reader == null || !reader.Read()) return null;
-                return new ImageRecord(reader);
+                using (MySqlDataReader reader = DBQueries.Select(QUERY_SELECT_BY_ID, id)) {
+                    if (!reader.Read()) return null;
+                    return new ImageRecord(reader);
+                }
             }
             catch (Exception ex) {
                 Console.Error.WriteLine(ex.Message);

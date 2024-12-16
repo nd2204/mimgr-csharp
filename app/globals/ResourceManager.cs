@@ -9,6 +9,7 @@ using System.Net.Http;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web;
 
 namespace app.globals {
 
@@ -35,14 +36,41 @@ namespace app.globals {
             AppDataPath = new DirectoryInfo(Path.Combine(appData, APP_NAME));
 
             ProjectPath = new DirectoryInfo(Path.Combine(AppContext.BaseDirectory, "..", "..", ".."));
-            UploadPath = new DirectoryInfo(Path.Combine(ProjectPath.FullName, "uploads"));
-            ExportPath = new DirectoryInfo(Path.Combine(ProjectPath.FullName, "exports"));
+            UploadPath = new DirectoryInfo(Path.Combine(ProjectPath.FullName, "..", "uploads"));
+            ExportPath = new DirectoryInfo(Path.Combine(ProjectPath.FullName, "..", "exports"));
             TempPath = new DirectoryInfo(Path.Combine(Path.GetTempPath(), APP_NAME));
 
             CreateDirIfNotExists(AppDataPath);
             CreateDirIfNotExists(UploadPath);
             CreateDirIfNotExists(ExportPath);
             CreateDirIfNotExists(TempPath);
+        }
+        public Image GetUploadFromDB(string name) {
+            try {
+                name = name.Substring(name.LastIndexOf("/") + 1).Replace("/", "\\\\");
+                return Image.FromFile(Path.Combine(UploadPath.FullName, name));
+            } catch (FileNotFoundException ex) {
+                Console.Error.WriteLine(ex.Message);
+                return null;
+            }
+        }
+
+        public Image GetUploadImage(string name) {
+            try {
+                return Image.FromFile(Path.Combine(UploadPath.FullName, name));
+            } catch (FileNotFoundException ex) {
+                Console.Error.WriteLine(ex.Message);
+                return null;
+            }
+        }
+
+        public Image GetIconImage(string name) {
+            try {
+                return Image.FromFile(Path.Combine(ResourcePath.FullName, "icons", name));
+            } catch (FileNotFoundException ex) {
+                Console.Error.WriteLine(ex.Message);
+                return null;
+            }
         }
 
         public static FileInfo GetResource(string path) {

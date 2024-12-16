@@ -11,19 +11,19 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace app.components;
-internal class MButton : Button {
-    public MButton() { 
+public class MButton : Button {
+    public MButton() {
         this.Cursor = Cursors.Hand;
 
-        BorderColor      = Color.Gray;
+        BorderColor = Color.Gray;
         ClickBorderColor = Color.Black;
         HoverBorderColor = Color.Black;
 
-        Background           = Color.White;
+        Background = Color.White;
         ClickBackgroundColor = Color.Black;
         HoverBackgroundColor = Color.Black;
 
-        Foreground           = Color.Black;
+        Foreground = Color.Gray;
         ClickForegroundColor = Color.White;
         HoverForegroundColor = Color.White;
 
@@ -41,7 +41,7 @@ internal class MButton : Button {
     private Color _Background;
     private Color _ClickBackgroundColor;
     private Color _HoverBackgroundColor;
-    
+
     private Color _Foreground;
     private Color _ClickForegroundColor;
     private Color _HoverForegroundColor;
@@ -51,7 +51,7 @@ internal class MButton : Button {
     [Browsable(true)]
     [Category("Appearance")]
     [DefaultValue(typeof(Color), "Gray")]
-    public Color BorderColor      { get { return _BorderColor; } set { _BorderColor = value; this.Invalidate(); } }
+    public Color BorderColor { get { return _BorderColor; } set { _BorderColor = value; this.Invalidate(); } }
 
     [Browsable(true)]
     [Category("Appearance")]
@@ -65,8 +65,8 @@ internal class MButton : Button {
 
     [Browsable(true)]
     [Category("Appearance")]
-    [DefaultValue(typeof(Color), "White")] 
-    public Color Background           { get { return _Background; } set { _Background = value; this.Invalidate(); } }
+    [DefaultValue(typeof(Color), "White")]
+    public Color Background { get { return _Background; } set { _Background = value; this.Invalidate(); } }
 
     [Browsable(true)]
     [Category("Appearance")]
@@ -80,8 +80,8 @@ internal class MButton : Button {
 
     [Browsable(true)]
     [Category("Appearance")]
-    [DefaultValue(typeof(Color), "Black")]
-    public Color Foreground           { get { return _Foreground; } set { _Foreground = value; this.Invalidate(); } }
+    [DefaultValue(typeof(Color), "Gray")]
+    public Color Foreground { get { return _Foreground; } set { _Foreground = value; this.Invalidate(); } }
 
     [Browsable(true)]
     [Category("Appearance")]
@@ -102,10 +102,6 @@ internal class MButton : Button {
     [Category("Appearance")]
     [DefaultValue(5)]
     public int IconPadding { get; set; } = 5; // Padding between the icon and text
-
-    private Icon prefixIcon = null;
-    private Icon postfixIcon = null;
-
 
     // Override OnPaint to customize button drawing
     protected override void OnPaint(PaintEventArgs pevent) {

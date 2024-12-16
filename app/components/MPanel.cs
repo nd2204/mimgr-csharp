@@ -11,7 +11,6 @@ using System.Windows.Forms;
 namespace app.components;
 internal class MPanel : Panel {
     private bool isHovered = false;
-    private bool isClicked = false;
 
     private Color _BorderColor;
     private Color _HoverBorderColor;

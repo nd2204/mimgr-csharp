@@ -15,21 +15,16 @@ internal class FormManager {
     // Main panel serving as the layered pane
     private Panel mainPanel = new Panel { Dock = DockStyle.Fill, AutoScroll = true };
 
-    // Base panel with a CardLayout equivalent (dictionary for panel switching)
-    private Dictionary<string, Form> formMap = new Dictionary<string, Form>();
-    private string currentPanelId = null;
-
-    public Form _MainForm = null;
-
+    public FormMain _MainForm = null;
     public FormLogin _Login = null;
-    public Form _SignUp = null;
+    public FormSignUp _SignUp = null;
     public FormDashboard _Dashboard = null;
 
     public Panel MainPanel { get { return mainPanel; } }
-    public Form MainForm { get { return (_MainForm != null) ? _MainForm : new FormMain(); } }
-    public Form SignUp { get { return (_SignUp != null) ? _SignUp : new FormSignUp(); } }
-    public FormLogin Login { get { return (_Login != null) ? _Login : new FormLogin(); } }
-    public FormDashboard Dashboard { get { return (_Dashboard != null) ? _Dashboard : new FormDashboard(); } }
+    public FormMain MainForm { get { return (_MainForm != null) ? _MainForm : _MainForm = new FormMain(); } }
+    public FormSignUp SignUp { get { return (_SignUp != null) ? _SignUp : _SignUp = new FormSignUp(); } }
+    public FormLogin Login { get { return (_Login != null) ? _Login : _Login = new FormLogin(); } }
+    public FormDashboard Dashboard { get { return (_Dashboard != null) ? _Dashboard : _Dashboard = new FormDashboard(); } }
 
     public void LoadDashboardForm(Form form) {
         if (mainPanel.Controls.Count > 0) {

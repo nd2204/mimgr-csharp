@@ -59,7 +59,7 @@ namespace app.db.records {
             return DBQueries.Update(QUERY_UPDATE, hash, salt, role, roles[role]);
         }
 
-        public static int Update(string username, string role, string email, string number, string bio, int user_id) {
+        public static int Update(int user_id, string username, string role, string email, string number, string bio) {
             return DBQueries.Update(QUERY_UPDATE_PROFILE, username, role, email, number, bio, user_id);
         }
 
