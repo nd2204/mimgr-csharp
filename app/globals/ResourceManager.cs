@@ -195,7 +195,7 @@ namespace app.globals {
         }
 
         public string GetRelativePathFromProjectToPath(FileInfo path) {
-            return Path.GetRelativePath(ProjectPath.FullName, path.Name);
+            return Path.GetRelativePath(ProjectPath.FullName, path.FullName);
         }
 
         public static FileInfo GetUniquePath(FileInfo destinationPath) {

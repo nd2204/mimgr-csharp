@@ -25,15 +25,6 @@ namespace app
             Application.SetCompatibleTextRenderingDefault(false);
 
             FormManager formMgr = FormManager.Instance;
-
-            UserRecord ur = SessionManager.Instance.LoadSession();
-            if (ur == null) {
-                formMgr.LoadForm(formMgr.Login);
-            }
-            else {
-                formMgr.LoadForm(formMgr.Dashboard);
-            }
-
             Application.Run(formMgr.MainForm);
         }
     }

@@ -39,7 +39,12 @@ public class ProductModel {
                 DBQueries.LoadValue(reader, ProductRecord.FIELD_PRICE, out product.price);
 
                 ImageRecord ir = new ImageRecord(reader);
-                product.image = ResourceManager.Instance.GetUploadFromDB(ir.m_url);
+                Image image = ResourceManager.Instance.GetUploadFromDB(ir.m_url);
+                if (image == null) {
+                    product.image = ResourceManager.Instance.GetIconImage("image.png");
+                } else {
+                    product.image = image;
+                }
                 Products.Add(product);
             }
         }

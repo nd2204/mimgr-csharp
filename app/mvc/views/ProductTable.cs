@@ -32,6 +32,7 @@ public partial class ProductTable : UserControl {
         foreach (DataGridViewRow row in dataGridView1.Rows) {
             row.Height = 100;
         }
+        this.dataGridView1.Refresh();
     }
 
     private void AddRows(ProductModel.Product product) {
@@ -40,7 +41,8 @@ public partial class ProductTable : UserControl {
 
     private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e) {
         // Ensure the click is on the button column
-        if (e.ColumnIndex == dataGridView1.Columns["action"].Index && e.RowIndex >= 0) {
+        
+        if (e.RowIndex >= 0 && dataGridView1.Columns[e.ColumnIndex].Name == "action") {
             ProductModel.Product product = productModel.Products[e.RowIndex];
             DialogResult result = MessageBox.Show(
                 $"Delete {product.name}?",
@@ -51,7 +53,6 @@ public partial class ProductTable : UserControl {
 
             if (result == DialogResult.Yes) {
                 ProductRecord.Delete(product.id);
-                this.dataGridView1.Rows.RemoveAt(e.RowIndex);
                 productModel.Products.Remove(product);
             }
         }

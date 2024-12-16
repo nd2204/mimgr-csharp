@@ -250,6 +250,7 @@ partial class ControlProductInfo {
         this.mButton1.Size = new System.Drawing.Size(33, 31);
         this.mButton1.TabIndex = 1;
         this.mButton1.UseVisualStyleBackColor = true;
+        this.mButton1.Click += this.mButton1_Click;
         // 
         // tableLayoutPanel3
         // 

@@ -21,30 +21,21 @@ public partial class FormMain : Form {
     public FormMain() {
         InitializeComponent();
 
-        SetDarkTitleBar(this.Handle);
         this.MinimumSize = new Size(854, 480);
         this.Text = "Mimgr";
         this.Height = m_height;
         this.Width = m_width;
 
-        FormManager.Instance.AddToParent(this);
+        FormManager formMgr = FormManager.Instance;
+        formMgr.AddToParent(this);
 
-    }
-
-    // Import the DwmSetWindowAttribute function
-    [DllImport("Dwmapi.dll")]
-    private static extern int DwmSetWindowAttribute(IntPtr hwnd, int attr, ref int attrValue, int attrSize);
-
-    private void SetDarkTitleBar(IntPtr handle) {
-        if (IsWindows10OrLater()) {
-            int attribute = 19; // DWMWA_USE_IMMERSIVE_DARK_MODE
-            int useDarkMode = 1; // Enable dark mode
-            DwmSetWindowAttribute(handle, attribute, ref useDarkMode, sizeof(int));
+        UserRecord ur = SessionManager.Instance.LoadSession();
+        if (ur == null) {
+            formMgr.LoadForm(formMgr.Login);
         }
-    }
-
-    private bool IsWindows10OrLater() {
-        return Environment.OSVersion.Version.Major >= 10;
+        else {
+            formMgr.LoadForm(formMgr.Dashboard);
+        }
     }
 
     private void mButton1_Click(object sender, EventArgs e) {

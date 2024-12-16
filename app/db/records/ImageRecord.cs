@@ -67,9 +67,10 @@ namespace app.db.records {
         public static ImageRecord SelectByName(string name) {
             name = name.Substring(0, name.IndexOf("."));
             try {
-                MySqlDataReader reader = SelectByField(FIELD_NAME, name);
-                if (reader == null || !reader.Read()) return null;
-                return new ImageRecord(reader);
+                using (MySqlDataReader reader = SelectByField(FIELD_NAME, name)) {
+                    if (reader == null || !reader.Read()) return null;
+                    return new ImageRecord(reader);
+                }
             }
             catch (Exception ex) {
                 Console.Error.WriteLine(ex.Message);
@@ -82,7 +83,8 @@ namespace app.db.records {
                 MySqlDataReader reader = SelectByField(FIELD_URL, url);
                 if (reader == null || !reader.Read()) return null;
                 return new ImageRecord(reader);
-            } catch (Exception ex) {
+            }
+            catch (Exception ex) {
                 Console.Error.WriteLine(ex.Message);
                 return null;
             }
