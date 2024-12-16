@@ -1,4 +1,5 @@
 ﻿using app.globals;
+using app.utils;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -13,6 +14,21 @@ namespace app.components;
 internal class MButton : Button {
     public MButton() { 
         this.Cursor = Cursors.Hand;
+
+        BorderColor      = Color.Gray;
+        ClickBorderColor = Color.Black;
+        HoverBorderColor = Color.Black;
+
+        Background           = Color.White;
+        ClickBackgroundColor = Color.Black;
+        HoverBackgroundColor = Color.Black;
+
+        Foreground           = Color.Black;
+        ClickForegroundColor = Color.White;
+        HoverForegroundColor = Color.White;
+
+        _BorderWidth = 4;
+
     }
 
     private bool isHovered = false;
@@ -34,7 +50,7 @@ internal class MButton : Button {
 
     [Browsable(true)]
     [Category("Appearance")]
-    [DefaultValue(typeof(Color), "Black")]
+    [DefaultValue(typeof(Color), "Gray")]
     public Color BorderColor      { get { return _BorderColor; } set { _BorderColor = value; this.Invalidate(); } }
 
     [Browsable(true)]
@@ -82,26 +98,17 @@ internal class MButton : Button {
     [DefaultValue(4)]
     public int BorderWidth { get { return _BorderWidth; } set { _BorderWidth = value; this.Invalidate(); } }
 
+    [Browsable(true)]
+    [Category("Appearance")]
+    [DefaultValue(5)]
+    public int IconPadding { get; set; } = 5; // Padding between the icon and text
+
     private Icon prefixIcon = null;
     private Icon postfixIcon = null;
 
 
     // Override OnPaint to customize button drawing
     protected override void OnPaint(PaintEventArgs pevent) {
-
-        _BorderColor      = Color.Black;
-        _ClickBorderColor = Color.Black;
-        _HoverBorderColor = Color.Black;
-
-        _Background           = Color.White;
-        _ClickBackgroundColor = Color.Black;
-        _HoverBackgroundColor = Color.Black;
-
-        _Foreground           = Color.Black;
-        _ClickForegroundColor = Color.White;
-        _HoverForegroundColor = Color.White;
-
-        _BorderWidth = 4;
 
         base.OnPaint(pevent);
 
@@ -110,7 +117,6 @@ internal class MButton : Button {
 
         // Set up the button's visual appearance (e.g., border, background color, etc.)
         Rectangle buttonRect = this.ClientRectangle;
-
 
         Pen borderPen;
         Brush backgroundBrush;
@@ -133,15 +139,45 @@ internal class MButton : Button {
         }
 
         g.FillRectangle(backgroundBrush, buttonRect);
+
+        Image image = this.Image;
+
+        if (image != null) {
+            int size = Math.Min(image.Height, this.Height) - IconPadding * 2;
+            image = ImageUtils.ChangeImageColor(
+                ImageUtils.ResizeByAspectRatio(image, size, size),
+                textColor);
+
+            // Calculate the position to draw the icon
+            int iconX = IconPadding;
+            if (string.IsNullOrEmpty(this.Text)) {
+                iconX = (this.Width - image.Width) / 2;
+            }
+            int iconY = (this.Height - image.Height) / 2;
+
+            // Draw the icon
+            g.DrawImageUnscaled(image, new Point(iconX, iconY));
+        }
+
         g.DrawRectangle(borderPen, buttonRect);
         borderPen.Dispose();
         backgroundBrush.Dispose();
 
-        // Draw the button's text
-        TextFormatFlags flags = TextFormatFlags.HorizontalCenter | TextFormatFlags.VerticalCenter;
-        using (Font font = new Font("Arial", 10, FontStyle.Bold)) {
-            TextRenderer.DrawText(g, this.Text, font, buttonRect, textColor, flags);
+        if (image != null) {
+            // Draw the button's text
+            string buttonText = this.Text;
+            using (Brush textBrush = new SolidBrush(textColor)) {
+                float textX = image.Width + (2 * IconPadding);
+                float textY = MathF.Ceiling((this.Height - MathF.Ceiling(g.MeasureString(buttonText, this.Font).Height)) / 2 + 1);
+                g.DrawString(buttonText, this.Font, textBrush, textX, textY);
+            }
         }
+        else {
+            // Draw the button's text
+            TextFormatFlags flags = TextFormatFlags.HorizontalCenter | TextFormatFlags.VerticalCenter;
+            TextRenderer.DrawText(g, this.Text, this.Font, buttonRect, textColor, flags);
+        }
+
     }
 
     // Handle mouse hover events to trigger changes

@@ -8,18 +8,18 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace app.globals {
     internal class SessionManager {
         private static readonly Lazy<SessionManager> instance = new Lazy<SessionManager>(() => new SessionManager());
         public static SessionManager Instance => instance.Value;
 
-        private static ResourceManager rm = ResourceManager.Instance;
-        private static UserRecord currentUser = null;
+        private UserRecord currentUser = null;
         private static readonly string TOKEN_FILE = Path.Combine(ResourceManager.Instance.AppDataPath.ToString(), "TOKEN");
         private static readonly string TOKEN_KEY = "rememberMeToken";
 
-        public static void SaveSession(string token, DateTime expirationTime, int userId) {
+        public void SaveSession(string token, DateTime expirationTime, int userId) {
             var properties = new NameValueCollection();
             properties[TOKEN_KEY] = token;
             SessionRecord.Insert(Security.GenerateToken(), token, userId, expirationTime);
@@ -38,7 +38,7 @@ namespace app.globals {
 
         // Load session if a valid token is present and has not expired
         //
-        public static UserRecord LoadSession() {
+        public UserRecord LoadSession() {
             string token = GetToken();
             if (token == null || token.Length == 0) {
                 Console.WriteLine(TOKEN_FILE + " Not exist, Skipping...");
@@ -47,9 +47,12 @@ namespace app.globals {
 
             try {
                 MySqlDataReader reader = SessionRecord.SelectByToken(token);
-                if (reader == null || !reader.Read()) return null;
-
+                if (reader == null || !reader.Read()) {
+                    ClearSession();
+                    return null;
+                }
                 var sr = new SessionRecord(reader);
+                reader.Close();
                 if (DateTime.Now < sr.m_expiration_time) {
                     using (MySqlDataReader rs = UserRecord.SelectUserById(sr.m_user_id)) {
                         if (!rs.Read()) return null;
@@ -57,12 +60,12 @@ namespace app.globals {
                         SetCurrentUser(ur);
                         return ur;
                     }
-
                 }
                 else {
                     Console.Error.WriteLine("NO TOKEN FOUND WITH THIS DEVICE TOKEN");
-                    clearSession();
+                    ClearSession();
                 }
+
             }
             catch (Exception e) {
                 Console.Error.WriteLine(e.Message);
@@ -88,7 +91,7 @@ namespace app.globals {
             return null;
         }
 
-        public static void clearSession() {
+        public void ClearSession() {
             try {
                 SessionRecord.DeleteByToken(GetToken());
                 if (File.Exists(TOKEN_FILE)) {
@@ -100,11 +103,11 @@ namespace app.globals {
             }
         }
 
-        public static UserRecord GetCurrentUser() {
+        public UserRecord GetCurrentUser() {
             return currentUser;
         }
 
-        public static void SetCurrentUser(UserRecord ur) {
+        public void SetCurrentUser(UserRecord ur) {
             currentUser = ur;
             Console.WriteLine("Logged in as user: " + ur.m_username + " as role: " + ur.m_role);
             //PanelManager.createPopup(new NotificationPopup("Chào mừng trở lại " + ur.m_username, NotificationPopup.NOTIFY_LEVEL_INFO, 5000));

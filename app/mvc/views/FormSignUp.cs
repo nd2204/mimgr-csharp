@@ -1,9 +1,14 @@
-﻿using app.globals;
+﻿using app.db.records;
+using app.globals;
+using app.utils;
 using System;
+using System.Drawing;
 using System.Windows.Forms;
 
 namespace app.mvc.views {
     public partial class FormSignUp : Form {
+
+        private bool hidden = true;
         public FormSignUp() {
             InitializeComponent();
         }
@@ -51,6 +56,49 @@ namespace app.mvc.views {
         private void login_Click(object sender, EventArgs e) {
             FormManager fm = FormManager.Instance;
             fm.LoadForm(fm.Login);
+        }
+
+        private void mButton1_Click(object sender, EventArgs e) {
+            if (hidden) {
+                mButton1.Image = Image.FromFile(ResourceManager.GetResource("icons\\eye_opened.png").FullName);
+            }
+            else {
+                mButton1.Image = Image.FromFile(ResourceManager.GetResource("icons\\eye_closed.png").FullName);
+            }
+            hidden = !hidden;
+            tbConfirmPassword.PasswordChar = hidden;
+            tbPassword.PasswordChar = hidden;
+        }
+
+        private void btnSignup_Click(object sender, EventArgs e) {
+            string username = tbUsername.TextBox.Text.Trim();
+            string password = tbPassword.TextBox.Text.Trim();
+            string salt = Security.GenerateSalt(16);
+
+            if (string.IsNullOrEmpty(username)) {
+                MessageBox.Show("Enter Username");
+                tbUsername.Focus();
+                return;
+            }
+            if (string.IsNullOrEmpty(password)) {
+                MessageBox.Show("Enter Password");
+                tbPassword.Focus();
+                return;
+            }
+            if (!Helpers.IsValidUsername(username)) {
+                tbUsername.Focus();
+                return;
+            }
+            if (!Helpers.IsValidPassword(password)) {
+                tbPassword.Focus();
+                return;
+            }
+            if (!tbPassword.Equals(tbConfirmPassword)) {
+                MessageBox.Show("Mật khẩu không trùng khớp");
+                return;
+            }
+
+            UserRecord.Insert(tbUsername.Text, Security.HashString(password + salt), salt, UserRecord.roles[UserRecord.ROLE_ADMIN]);
         }
     }
 }

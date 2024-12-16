@@ -10,6 +10,15 @@ namespace app.db {
     internal class DBQueries {
         private static MySqlConnection dbcon = DBConnection.Instance.GetConnection();
 
+        public static void LoadValue<T>(MySqlDataReader r, string col_name, out T val) {
+            int col = r.GetOrdinal(col_name);
+            if (r.IsDBNull(col))
+                val = default(T);
+            else {
+                val = (T)r.GetValue(col);
+            }
+        }
+
         public static MySqlDataReader Select(string stmt, params object[] args) {
             MySqlDataReader resultSet = null;
             dbcon = DBConnection.Instance.GetConnection();

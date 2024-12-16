@@ -23,6 +23,8 @@ public partial class MTextBox : UserControl {
     private bool underlinedStyle = false;
     private bool isFocused = false;
 
+    public TextBox TextBox { get { return this.textBox1; } }
+
     //Constructor
 
     //Events

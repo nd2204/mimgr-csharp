@@ -19,6 +19,7 @@ internal class MPanel : Panel {
     private Color _BackgroundEnd;
     private Color _HoverBackgroundColor;
     private int _BorderWidth;
+    private float angle;
 
     [Browsable(true)]
     [Category("Appearance")]
@@ -50,7 +51,13 @@ internal class MPanel : Panel {
     [DefaultValue(4)]
     public int BorderWith { get { return _BorderWidth; } set { _BorderWidth = value; this.Invalidate(); } }
 
+    [Browsable(true)]
+    [Category("Appearance")]
+    [DefaultValue(45f)]
+    public float Angle { get { return angle; } set { angle = value; this.Invalidate(); } }
+
     public MPanel() {
+        angle = 45f;
         _BorderWidth = 4;
         _BorderColor = Color.White;
         _HoverBorderColor = Color.Black;
@@ -81,11 +88,11 @@ internal class MPanel : Panel {
 
         if (isHovered) {
             borderPen = new Pen(_HoverBorderColor, _BorderWidth);
-            backgroundBrush = new LinearGradientBrush(buttonRect, _HoverBackgroundColor, _BackgroundEnd, 45f);
+            backgroundBrush = new LinearGradientBrush(buttonRect, _HoverBackgroundColor, _BackgroundEnd, angle);
         }
         else {
             borderPen = new Pen(_BorderColor, _BorderWidth);
-            backgroundBrush = new LinearGradientBrush(buttonRect, _Background, _BackgroundEnd, 45f);
+            backgroundBrush = new LinearGradientBrush(buttonRect, _Background, _BackgroundEnd, angle);
         }
 
         g.FillRectangle(backgroundBrush, buttonRect); // Fill the panel's background with the gradient

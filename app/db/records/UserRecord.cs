@@ -4,18 +4,19 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace app.db.records {
     internal class UserRecord {
         public UserRecord(MySqlDataReader reader) {
-            m_id       = reader.GetInt32(FIELD_ID);
-            m_hash     = reader.GetString(FIELD_HASH);
-            m_salt     = reader.GetString(FIELD_SALT);
-            m_username = reader.GetString(FIELD_USERNAME);
-            m_role     = reader.GetString(FIELD_ROLE);
-            m_email    = reader.GetString(FIELD_EMAIL);
-            m_number   = reader.GetString(FIELD_NUMBER);
-            m_bio      = reader.GetString(FIELD_BIO);
+            DBQueries.LoadValue(reader, FIELD_ID, out m_id);
+            DBQueries.LoadValue(reader,FIELD_HASH, out m_hash);
+            DBQueries.LoadValue(reader,FIELD_SALT, out m_salt);
+            DBQueries.LoadValue(reader,FIELD_USERNAME, out m_username);
+            DBQueries.LoadValue(reader,FIELD_ROLE, out m_role);
+            DBQueries.LoadValue(reader,FIELD_EMAIL, out m_email);
+            DBQueries.LoadValue(reader,FIELD_NUMBER, out m_number);
+            DBQueries.LoadValue(reader,FIELD_BIO, out m_bio);
         }
         public UserRecord
         (   int id, string hash, string salt, string username,
@@ -32,7 +33,7 @@ namespace app.db.records {
         }
 
         public static MySqlDataReader SelectUserById(int id) {
-            return DBQueries.Select(QUERY_SELECT_BY_ID, id);
+            return DBQueries.Select(QUERY_SELECT_BY_ID, id.ToString());
         }
 
         public static MySqlDataReader SelectUserByName(string username) {
@@ -75,23 +76,23 @@ namespace app.db.records {
         public string m_number;
         public string m_bio;
 
-        public static string TABLE          = "usereader";
-        public static string FIELD_ID       = "id";
-        public static string FIELD_HASH     = "hash";
-        public static string FIELD_SALT     = "salt";
-        public static string FIELD_USERNAME = "username";
-        public static string FIELD_ROLE     = "role";
-        public static string FIELD_EMAIL    = "email";
-        public static string FIELD_NUMBER   = "number";
-        public static string FIELD_BIO      = "bio";
+        public static readonly string TABLE          = "users";
+        public static readonly string FIELD_ID       = "id";
+        public static readonly string FIELD_HASH     = "hash";
+        public static readonly string FIELD_SALT     = "salt";
+        public static readonly string FIELD_USERNAME = "username";
+        public static readonly string FIELD_ROLE     = "role";
+        public static readonly string FIELD_EMAIL    = "email";
+        public static readonly string FIELD_NUMBER   = "number";
+        public static readonly string FIELD_BIO      = "bio";
 
         public static readonly string QUERY_INSERT =
             $"INSERT INTO {TABLE} ({FIELD_USERNAME}, {FIELD_HASH}, {FIELD_SALT}, {FIELD_ROLE}) " +
             $"VALUES (@value0, @value1, @value2, @value3);";
 
-        public static readonly string QUERY_SELECT_BY_NAME = $"SELECT * FROM {TABLE} WHERE {FIELD_USERNAME}=@value0;";
-        public static readonly string QUERY_SELECT_BY_ID = $"SELECT * FROM {TABLE} WHERE {FIELD_ID}=@value0;";
-        public static readonly string QUERY_SELECT_BY_ROLE = $"SELECT * FROM {TABLE} WHERE {FIELD_ROLE}=@value0;";
+        public static readonly string QUERY_SELECT_BY_NAME = $"SELECT * FROM {TABLE} WHERE {FIELD_USERNAME} = @value0";
+        public static readonly string QUERY_SELECT_BY_ID   = $"SELECT * FROM {TABLE} WHERE {FIELD_ID} = @value0";
+        public static readonly string QUERY_SELECT_BY_ROLE = $"SELECT * FROM {TABLE} WHERE {FIELD_ROLE} = @value0";
 
         public static readonly string QUERY_UPDATE =
             $"UPDATE {TABLE} " +

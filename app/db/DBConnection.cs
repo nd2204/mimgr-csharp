@@ -97,16 +97,16 @@ namespace app.db {
             reconnectThread = new Thread(() => {
                 reconnecting = true;
                 while (reconnecting) {
-                    MessageBox.Show("Attempting to reconnect...", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    Console.WriteLine("Attempting to reconnect...");
                     try {
                         Thread.Sleep(5000); // Attempt to reconnect every 5 seconds
                         TryConnect();
                         if (connection != null && IsConnectionValid()) {
-                            MessageBox.Show("Reconnected successfully.", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            Console.WriteLine("Reconnected successfully.");
                             StopReconnectThread();
                         }
                         else {
-                            MessageBox.Show("Connection Failed.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            Console.WriteLine("Connection Failed.");
                         }
                         Thread.Sleep(5000);
                     }

@@ -129,7 +129,7 @@ namespace app.db.records {
               ir.m_name,
               ir.m_url,
               ir.m_caption,
-              SessionManager.GetCurrentUser().m_id,
+              SessionManager.Instance.GetCurrentUser().m_id,
               ir.m_id
             );
             return result;
@@ -148,7 +148,7 @@ namespace app.db.records {
               ir.m_name,
               ir.m_caption,
               ir.m_url,
-              SessionManager.GetCurrentUser().m_id,
+              SessionManager.Instance.GetCurrentUser().m_id,
               ir.m_id
             );
             return result;

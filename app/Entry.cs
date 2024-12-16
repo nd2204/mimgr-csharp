@@ -23,16 +23,15 @@ namespace app
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
-            FontManager fontMgr = FontManager.Instance;
             FormManager formMgr = FormManager.Instance;
 
-            UserRecord ur = SessionManager.LoadSession();
+            UserRecord ur = SessionManager.Instance.LoadSession();
             if (ur == null) {
-                formMgr.LoadForm(formMgr.SignUp);
+                formMgr.LoadForm(formMgr.Login);
             }
             else {
                 formMgr.LoadForm(formMgr.Dashboard);
-           }
+            }
 
             Application.Run(formMgr.MainForm);
         }

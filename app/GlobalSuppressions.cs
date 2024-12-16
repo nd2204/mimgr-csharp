@@ -6,4 +6,4 @@
 using System.Diagnostics.CodeAnalysis;
 
 [assembly: SuppressMessage("Interoperability", "CA1416:Validate platform compatibility", Justification = "<Pending>")]
-[assembly: SuppressMessage("WinForms Security", "WFO1000:Missing code serialization configuration for property content", Justification = "<Pending>", Scope = "member", Target = "~P:app.components.MTextBox.Font")]
+[assembly: SuppressMessage("WinForms Security", "WFO1000:Missing code serialization configuration for property content", Justification = "<Pending>")]
