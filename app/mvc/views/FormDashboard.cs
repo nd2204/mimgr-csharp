@@ -31,7 +31,7 @@ public partial class FormDashboard : Form {
         ButtonToForm[btnProduct] = new FormProduct();
         ButtonToForm[btnAccount] = new FormAccount();
         ButtonToForm[btnMedia] = new FormMedia();
-        ButtonToForm[btnOrder] = new Form();
+        ButtonToForm[btnOrder] = new FormOrder();
     }
 
     private void btnLogout_Click(object sender, EventArgs e) {

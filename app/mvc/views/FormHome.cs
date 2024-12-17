@@ -12,10 +12,5 @@ namespace app.mvc.views;
 public partial class FormHome : Form {
     public FormHome() {
         InitializeComponent();
-        this.Name = "Home";
-    }
-
-    private void label1_Click(object sender, EventArgs e) {
-
     }
 }
